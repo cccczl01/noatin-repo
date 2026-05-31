@@ -1,0 +1,45 @@
+---
+Type: desktop-application
+ID: com.noatin.chatgpt-client
+Name:
+    C: ChatGPT Client
+    zh_CN: ChatGPT 客户端
+Summary:
+    C: chatgpt-client for Noatin OS
+    zh_CN: 基于 Electron 的 ChatGPT 桌面客户端
+Description:
+    C: >-
+        A desktop client for ChatGPT Includes voice input support
+    zh_CN: >-
+        提供 ChatGPT 桌面访问体验 集成语音输入功能
+DeveloperName:
+    C: Noatin OS Team
+ProjectLicense: MIT
+Categories:
+    - Utility
+Icon:
+    remote:
+    - url: https://gitee.com/noatin/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png
+      width: 64
+      height: 64
+    - url: https://gitee.com/noatin/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png
+      width: 128
+      height: 128
+Screenshots:
+  - source_image:
+      url: https://gitee.com/noatin/noatin-repo/raw/main/noatin-chatgpt-client/assets/screenshots/main.png
+      lang: C
+Url:
+    homepage: https://github.com/lencx/ChatGPT
+Provides:
+    binaries:
+    - noatin-chatgpt-client
+Launchable:
+    desktop-id:
+    - com.noatin.chatgpt-client.desktop
+Releases:
+- version: 1.0.0
+  date: 2026-05-14
+  description:
+    C: >-
+        1.0.0 release
