@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+REPO_DIR="${REPO_DIR:-$(cd "${SCRIPT_DIR}/.." && pwd)}"
 
 usage() {
     cat << 'EOF'
@@ -57,6 +57,8 @@ if ! command -v git > /dev/null 2>&1; then
     echo "ERROR: 缺少依赖命令: git" >&2
     exit 1
 fi
+
+cd "$REPO_DIR"
 
 mask_url() {
     local url="$1"
