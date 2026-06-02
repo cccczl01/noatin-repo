@@ -124,9 +124,25 @@ for remote in "${GITEE_REMOTE}" "${GITHUB_REMOTE}" "${GITCODE_REMOTE}"; do
         push_exit=$?
         echo "${push_output}" | sed "s|https://[^@]*@|https://***@|g"
     else
+        LOCAL_SHA=$(git rev-parse HEAD 2>/dev/null)
         push_output=$(git push "${REPO_URL}" main 2>&1)
         push_exit=$?
         echo "${push_output}" | sed "s|https://[^@]*@|https://***@|g"
+
+        # If "Everything up-to-date" but local has new commits, try fetch+rebase+push
+        if [ "${push_exit}" -eq 0 ] && echo "${push_output}" | grep -q "Everything up-to-date"; then
+            if [[ -n "${LOCAL_SHA}" ]]; then
+                REMOTE_SHA=$(git ls-remote "${REPO_URL}" refs/heads/main 2>/dev/null | awk '{print $1}')
+                if [[ "${LOCAL_SHA}" != "${REMOTE_SHA}" ]]; then
+                    echo "  --- 检测到远程有新提交，尝试 fetch + rebase..."
+                    git fetch "${REPO_URL}" main 2>&1 | sed "s|https://[^@]*@|https://***@|g"
+                    git rebase FETCH_HEAD 2>&1
+                    push_output=$(git push "${REPO_URL}" main 2>&1)
+                    push_exit=$?
+                    echo "${push_output}" | sed "s|https://[^@]*@|https://***@|g"
+                fi
+            fi
+        fi
     fi
     RC=$push_exit
     set -e
