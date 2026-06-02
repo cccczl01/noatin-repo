@@ -4,18 +4,18 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
 
-GITEE_RAW_BASE="https://gitee.com/noatin/noatin-repo/raw/main"
-GITHUB_RAW_BASE="https://raw.githubusercontent.com/noatin/noatin-repo/main"
-GITCODE_RAW_BASE="https://gitcode.com/noatin/noatin-repo/raw/main"
+GITEE_RAW_BASE="https://gitee.com/cccczl01/noatin-repo/raw/main"
+GITHUB_RAW_BASE="https://raw.githubusercontent.com/cccczl01/noatin-repo/main"
+GITCODE_RAW_BASE="https://gitcode.com/cccczl001/noatin-repo/raw/main"
 
-GITEE_REPO="${GITEE_TOKEN:+https://${GITEE_TOKEN}@gitee.com/noatin/noatin-repo.git}"
-GITEE_REPO="${GITEE_REPO:-https://gitee.com/noatin/noatin-repo.git}"
+GITEE_REPO="${GITEE_TOKEN:+https://${GITEE_TOKEN}@gitee.com/cccczl01/noatin-repo.git}"
+GITEE_REPO="${GITEE_REPO:-https://gitee.com/cccczl01/noatin-repo.git}"
 
-GITHUB_REPO="${GITHUB_TOKEN:+https://${GITHUB_TOKEN}@github.com/noatin/noatin-repo.git}"
-GITHUB_REPO="${GITHUB_REPO:-https://github.com/noatin/noatin-repo.git}"
+GITHUB_REPO="${GITHUB_TOKEN:+https://${GITHUB_TOKEN}@github.com/cccczl01/noatin-repo.git}"
+GITHUB_REPO="${GITHUB_REPO:-https://github.com/cccczl01/noatin-repo.git}"
 
-GITCODE_REPO="${GITCODE_TOKEN:+https://${GITCODE_TOKEN}@gitcode.com/noatin/noatin-repo.git}"
-GITCODE_REPO="${GITCODE_REPO:-https://gitcode.com/noatin/noatin-repo.git}"
+GITCODE_REPO="${GITCODE_TOKEN:+https://${GITCODE_TOKEN}@gitcode.com/cccczl001/noatin-repo.git}"
+GITCODE_REPO="${GITCODE_REPO:-https://gitcode.com/cccczl001/noatin-repo.git}"
 
 PASS=0
 FAIL=0

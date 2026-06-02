@@ -73,14 +73,14 @@ GITEE_REMOTE="gitee"
 GITHUB_REMOTE="github"
 GITCODE_REMOTE="gitcode"
 
-GITEE_REPO="${GITEE_TOKEN:+https://${GITEE_TOKEN}@gitee.com/noatin/noatin-repo.git}"
-GITEE_REPO="${GITEE_REPO:-git@gitee.com:noatin/noatin-repo.git}"
+GITEE_REPO="${GITEE_TOKEN:+https://${GITEE_TOKEN}@gitee.com/cccczl01/noatin-repo.git}"
+GITEE_REPO="${GITEE_REPO:-git@gitee.com:cccczl01/noatin-repo.git}"
 
-GITHUB_REPO="${GITHUB_TOKEN:+https://${GITHUB_TOKEN}@github.com/noatin/noatin-repo.git}"
-GITHUB_REPO="${GITHUB_REPO:-git@github.com:noatin/noatin-repo.git}"
+GITHUB_REPO="${GITHUB_TOKEN:+https://${GITHUB_TOKEN}@github.com/cccczl01/noatin-repo.git}"
+GITHUB_REPO="${GITHUB_REPO:-git@github.com:cccczl01/noatin-repo.git}"
 
-GITCODE_REPO="${GITCODE_TOKEN:+https://${GITCODE_TOKEN}@gitcode.com/noatin/noatin-repo.git}"
-GITCODE_REPO="${GITCODE_REPO:-git@gitcode.com:noatin/noatin-repo.git}"
+GITCODE_REPO="${GITCODE_TOKEN:+https://${GITCODE_TOKEN}@gitcode.com/cccczl001/noatin-repo.git}"
+GITCODE_REPO="${GITCODE_REPO:-git@gitcode.com:cccczl001/noatin-repo.git}"
 
 echo "=== 三平台镜像同步 ==="
 echo ""

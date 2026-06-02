@@ -19,15 +19,15 @@ Categories:
     - Utility
 Icon:
     remote:
-    - url: https://gitee.com/noatin/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png
+    - url: https://gitee.com/cccczl01/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png
       width: 64
       height: 64
-    - url: https://gitee.com/noatin/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png
+    - url: https://gitee.com/cccczl01/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png
       width: 128
       height: 128
 Screenshots:
   - source_image:
-      url: https://gitee.com/noatin/noatin-repo/raw/main/noatin-chatgpt-client/assets/screenshots/main.png
+      url: https://gitee.com/cccczl01/noatin-repo/raw/main/noatin-chatgpt-client/assets/screenshots/main.png
       lang: C
 Url:
     homepage: https://github.com/lencx/ChatGPT
