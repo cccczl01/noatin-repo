@@ -73,7 +73,7 @@ GITEE_REMOTE="gitee"
 GITHUB_REMOTE="github"
 GITCODE_REMOTE="gitcode"
 
-GITEE_REPO="${GITEE_TOKEN:+https://${GITEE_TOKEN}@gitee.com/cccczl01/noatin-repo.git}"
+GITEE_REPO="${GITEE_TOKEN:+https://oauth2:${GITEE_TOKEN}@gitee.com/cccczl01/noatin-repo.git}"
 GITEE_REPO="${GITEE_REPO:-git@gitee.com:cccczl01/noatin-repo.git}"
 
 GITHUB_REPO="${GITHUB_TOKEN:+https://${GITHUB_TOKEN}@github.com/cccczl01/noatin-repo.git}"
