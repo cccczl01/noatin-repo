@@ -1,6 +1,6 @@
 ---
 Type: desktop-application
-ID: com.noatin.chatgpt-client
+ID: com.github.chatgpt-client
 Name:
     C: ChatGPT Client
     zh_CN: ChatGPT 客户端
@@ -33,10 +33,10 @@ Url:
     homepage: https://github.com/lencx/ChatGPT
 Provides:
     binaries:
-    - noatin-chatgpt-client
+    - chat-gpt
 Launchable:
     desktop-id:
-    - com.noatin.chatgpt-client.desktop
+    - chat-gpt.desktop
 Releases:
 - version: 1.0.0
   date: 2026-05-14
