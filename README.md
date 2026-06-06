@@ -1,5 +1,4 @@
 # noatin-repo
-<!-- 注意：本 README 与 repo/scripts/init-gitee-repo.sh 中 heredoc 生成内容需保持同步，修改任一处请同步更新另一处 -->
 
 Debian 软件包托管仓库 — 为 Noatin OS 提供 AI 工具 deb 包的统一分发和存储。
 
@@ -17,8 +16,6 @@ noatin-repo/
 │           └── main.png
 ├── dep11/                    # DEP-11 YAML 片段暂存目录
 │   └── {appstream_id}.yml    # 构建服务器产出的 YAML 片段
-└── scripts/                  # 仓库运维脚本
-    └── init-gitee-repo.sh    # 仓库初始化脚本
 ```
 
 ### 规则
@@ -30,7 +27,7 @@ noatin-repo/
 
 ## 平台
 
-本仓库通过 Gitee（主仓库）托管，同时镜像到 GitHub 和 GitCode。构建 CI 通过 `git push gitee main && git push github main && git push gitcode main` 同步三平台。
+本仓库托管于 GitHub。R2 作为 deb 包的灾备存储。
 
 ## 自动化构建
 
@@ -41,8 +38,8 @@ noatin-repo/
 1. **变更检测** — `ci-build.sh` 通过 `git diff` 检测变更的包目录
 2. **包构建** — 对每个变更的包，调用 `build-package.sh` 生成 deb 包
 3. **GPG 签名** — 使用项目 GPG 密钥对 deb 包签名
-4. **产物提交** — 将 deb 包和 DEP-11 元数据提交到 `repo/` 目录
-5. **多平台推送** — 推送到 Gitee 并通过 `sync-mirrors.sh` 同步 GitHub/GitCode
+4. **产物提交** — 将 deb/metadata.json 和 DEP-11 元数据提交到 `repo/` 目录
+5. **GitHub 推送** — 推送至 GitHub 仓库
 6. **VPS 更新** — 上传 DEP-11 片段并触发索引更新回调
 
 ### 手动构建
@@ -67,9 +64,7 @@ bash debian/scripts/ci-build.sh --pkg my-pkg
 | 变量 | 用途 |
 |------|------|
 | `GPG_PRIVATE_KEY` | GPG 私钥（ASCII-armored），用于 deb 包签名 |
-| `GITEE_TOKEN` | Gitee Personal Access Token |
 | `GITHUB_TOKEN` | GitHub Personal Access Token |
-| `GITCODE_TOKEN` | GitCode Personal Access Token |
 | `VPS_API_KEY` | VPS API 密钥（DEP-11 上传和索引回调） |
 | `VPS_DEP11_URL` | VPS DEP-11 上传端点 |
 | `VPS_CALLBACK_URL` | VPS 索引更新回调端点 |
