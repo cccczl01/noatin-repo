@@ -25,8 +25,8 @@
   "developer_name": "Noatin OS Team",
   "project_license": "MIT",
   "icon_url": "https://raw.githubusercontent.com/cccczl01/noatin-repo/main/noatin-chatgpt-client/assets/icon.png",
-  "screenshot_url": "",
+  "screenshot_url": "https://raw.githubusercontent.com/cccczl01/noatin-repo/main/noatin-chatgpt-client/assets/screenshots/main.png",
   "desktop_id": "chat-gpt.desktop",
-  "commit_sha": "0046926",
-  "build_date": "2026-06-06T03:40:04Z"
+  "commit_sha": "2d4ee54",
+  "build_date": "2026-06-06T10:52:22Z"
 }
