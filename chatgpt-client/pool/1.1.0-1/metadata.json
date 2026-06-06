@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "package_type": "external",
+  "package": "chatgpt-client",
+  "version": "1.1.0-1",
+  "architecture": "amd64",
+  "maintainer": "lencx <cxin1314@gmail.com>",
+  "description": "ChatGPT",
+  "long_description": "基于 Electron 的 ChatGPT 桌面客户端\n支持多会话管理和提示词模板\n集成语音输入功能",
+  "depends": "libayatana-appindicator3-1, libwebkit2gtk-4.0-37, libgtk-3-0",
+  "homepage": "https://github.com/lencx/ChatGPT",
+  "section": "",
+  "priority": "optional",
+  "installed_size": "10891",
+  "size": "5342458",
+  "sha256": "40290b7290b6fba6b8c58470ffa9bdc20c6077499aa3c058e71d60a69ad15544",
+  "md5": "0d082e4dd7256cb691f8bebd35ed3c3a",
+  "download": {
+    "upstream_url": "https://github.com/lencx/ChatGPT/releases/download/v1.1.0/ChatGPT_1.1.0_linux_x86_64.deb",
+    "r2_url": "https://r2.cccczl.top/chatgpt-client/pool/1.1.0-1/chatgpt-client_1.1.0-1_amd64.deb"
+  },
+  "zh_name": "ChatGPT 客户端",
+  "zh_summary": "基于 Electron 的 ChatGPT 桌面客户端，集成语音输入",
+  "zh_desc": "提供 ChatGPT 桌面访问体验\n集成语音输入功能",
+  "developer_name": "Noatin OS Team",
+  "project_license": "MIT",
+  "icon_url": "https://gitee.com/cccczl01/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png",
+  "screenshot_url": "",
+  "desktop_id": "chat-gpt.desktop",
+  "commit_sha": "9f2931a",
+  "build_date": "2026-06-06T00:33:42Z"
+}
