@@ -24,9 +24,9 @@
   "zh_desc": "提供 ChatGPT 桌面访问体验\n集成语音输入功能",
   "developer_name": "Noatin OS Team",
   "project_license": "MIT",
-  "icon_url": "https://gitee.com/cccczl01/noatin-repo/raw/main/noatin-chatgpt-client/assets/icon.png",
+  "icon_url": "https://raw.githubusercontent.com/cccczl01/noatin-repo/main/noatin-chatgpt-client/assets/icon.png",
   "screenshot_url": "",
   "desktop_id": "chat-gpt.desktop",
-  "commit_sha": "9f2931a",
-  "build_date": "2026-06-06T00:33:42Z"
+  "commit_sha": "0046926",
+  "build_date": "2026-06-06T03:40:04Z"
 }
