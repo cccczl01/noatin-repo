@@ -1,0 +1,31 @@
+# Noatin 软件安装知识库
+
+> 自托管 APT 仓库 + AI/LLM 友好的软件安装知识库。
+> AI CLI 工具可直接读取 llms.txt 获取安装信息，跳过网络搜索。
+> 每个 .md 文件包含：描述、下载源（国内优先）、环境要求、安全检查 + 安装命令。
+
+
+## MCP Server
+> Model Context Protocol Server 安装配置
+
+- （暂无）
+
+## Docker Compose 项目
+> docker compose up -d 一键启动
+
+- [Pixelle-Video](https://apt.cccczl.top/composes/pixelle-video.md): 开源 AI 视频生成平台，支持文本到视频、图像到视频等生成能力
+
+## AI Skills/规则
+> AI IDE/CLI 工具的 skills、rules、commands 配置
+
+- （暂无）
+
+## 第三方 deb 包
+> 直接下载 deb 文件并通过 apt install 安装
+
+- [Trae CN](https://apt.cccczl.top/debs/trae-cn.md): 字节跳动推出的 AI 编程 IDE，基于 VS Code 深度定制，内置 AI 助手
+
+## 二进制工具
+> 下载预编译二进制文件，install 到 /usr/local/bin
+
+- [Opencode](https://apt.cccczl.top/binaries/opencode.md): 开源 AI 代码生成 CLI 工具，支持多种 LLM 后端

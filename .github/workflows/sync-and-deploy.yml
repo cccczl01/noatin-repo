@@ -75,3 +75,18 @@ jobs:
           source: "dists/"
           target: "/opt/1panel/www/sites/apt.cccczl.top/index/"
           strip_components: 0
+
+      - name: Generate llms.txt
+        if: success()
+        run: bash kb/generate-llms-txt.sh
+
+      - name: Deploy knowledge base to VPS
+        if: success()
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_SSH_HOST }}
+          username: ${{ secrets.VPS_SSH_USER }}
+          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          source: "kb/*"
+          target: "/opt/1panel/www/sites/apt.cccczl.top/index/"
+          strip_components: 1
