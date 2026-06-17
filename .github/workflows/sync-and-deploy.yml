@@ -64,7 +64,7 @@ jobs:
           RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_KEY }}
           RCLONE_CONFIG_R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
         with:
-          args: sync pool/ r2:noatin-repo/pool/ --progress
+          args: sync pool/ r2:noatin-deb/pool/ --progress
 
       - name: Deploy index files to VPS
         if: success()
