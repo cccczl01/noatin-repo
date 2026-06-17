@@ -1,0 +1,75 @@
+name: Sync and Deploy APT Repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq dpkg-dev apt-utils xz-utils
+
+      - name: Create dists directory structure
+        run: mkdir -p dists/trixie/main/binary-amd64
+
+      - name: Generate Packages index
+        run: |
+          dpkg-scanpackages --multiversion pool/ /dev/null > dists/trixie/main/binary-amd64/Packages
+          # 替换 Filename 字段指向 R2 CDN
+          sed -i 's|^Filename: pool/|Filename: https://r2.cccczl.top/pool/|' dists/trixie/main/binary-amd64/Packages
+
+      - name: Compress Packages
+        run: |
+          gzip -9c dists/trixie/main/binary-amd64/Packages > dists/trixie/main/binary-amd64/Packages.gz
+          xz -9c dists/trixie/main/binary-amd64/Packages > dists/trixie/main/binary-amd64/Packages.xz
+
+      - name: Generate Release file
+        run: |
+          cat > /tmp/apt-release.conf << 'EOF'
+          APT::FTPArchive::Release {
+              Origin "Noatin OS";
+              Label "Noatin OS";
+              Suite "trixie";
+              Codename "trixie";
+              Architectures "amd64";
+              Components "main";
+              Description "Noatin OS Package Repository";
+          };
+          EOF
+          apt-ftparchive -c /tmp/apt-release.conf release dists/trixie > dists/trixie/Release
+
+      - name: Import GPG key and sign Release
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+          gpg --batch --clearsign -o dists/trixie/InRelease dists/trixie/Release
+
+      - name: Sync deb files to Cloudflare R2
+        uses: wei/rclone@v1
+        env:
+          RCLONE_CONFIG_R2_TYPE: s3
+          RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY }}
+          RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_KEY }}
+          RCLONE_CONFIG_R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+        with:
+          args: sync pool/ r2:noatin-repo/pool/ --progress
+
+      - name: Deploy index files to VPS
+        if: success()
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_SSH_HOST }}
+          username: ${{ secrets.VPS_SSH_USER }}
+          key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+          source: "dists/"
+          target: "/opt/1panel/www/sites/apt.cccczl.top/index/"
+          strip_components: 0
