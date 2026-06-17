@@ -26,8 +26,7 @@ jobs:
       - name: Generate Packages index
         run: |
           dpkg-scanpackages --multiversion pool/ /dev/null > dists/trixie/main/binary-amd64/Packages
-          # 替换 Filename 字段指向 R2 CDN
-          sed -i 's|^Filename: pool/|Filename: https://r2.cccczl.top/pool/|' dists/trixie/main/binary-amd64/Packages
+          # Filename 保持相对路径，由 VPS nginx 重定向到 R2
 
       - name: Compress Packages
         run: |
