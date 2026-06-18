@@ -133,6 +133,14 @@
     font-size: 0.8rem;
     color: var(--accent);
   }
+  .card .count .item {
+    display: block;
+    margin-top: 2px;
+  }
+  .card .count .empty {
+    color: var(--text-dim);
+    font-style: italic;
+  }
 
   .footer {
     text-align: center;
@@ -180,45 +188,7 @@
 </div>
 
 <div class="grid">
-  <a href="/debs/" class="card">
-    <div class="icon">📦</div>
-    <div class="name">deb 包</div>
-    <div class="slug">debs/</div>
-    <div class="desc">第三方 deb 软件包，通过 apt install 安装</div>
-    <div class="count">示例：Trae CN</div>
-  </a>
-
-  <a href="/binaries/" class="card">
-    <div class="icon">⚡</div>
-    <div class="name">二进制工具</div>
-    <div class="slug">binaries/</div>
-    <div class="desc">预编译二进制文件，直接 install 到 /usr/local/bin</div>
-    <div class="count">示例：Opencode</div>
-  </a>
-
-  <a href="/composes/" class="card">
-    <div class="icon">🐳</div>
-    <div class="name">Docker Compose 项目</div>
-    <div class="slug">composes/</div>
-    <div class="desc">docker compose up -d 一键部署</div>
-    <div class="count">示例：Pixelle-Video</div>
-  </a>
-
-  <a href="/skills/" class="card">
-    <div class="icon">🧩</div>
-    <div class="name">AI Skills / 规则</div>
-    <div class="slug">skills/</div>
-    <div class="desc">AI IDE/CLI 工具的 skills、rules、commands 配置</div>
-    <div class="count">暂无内容</div>
-  </a>
-
-  <a href="/mcps/" class="card">
-    <div class="icon">🔌</div>
-    <div class="name">MCP Server</div>
-    <div class="slug">mcps/</div>
-    <div class="desc">Model Context Protocol Server 安装部署</div>
-    <div class="count">暂无内容</div>
-  </a>
+@@CARDS@@
 </div>
 
 <div class="footer">
