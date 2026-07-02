@@ -18,15 +18,17 @@ noatin-repo/
 
 ```
 开发者 push deb 到 pool/  →  GitHub Actions 自动执行:
-  1. dpkg-scanpackages → 生成 Packages 索引
-  2. sed → Filename 替换为 R2 CDN 地址
+  1. dpkg-scanpackages → 生成 Packages 索引（--multiversion 多版本共存，Filename 保持相对路径）
+  2. gzip + xz → 压缩生成 Packages.gz / Packages.xz
   3. apt-ftparchive → 生成 Release 文件
   4. gpg --clearsign → GPG 签名 InRelease
   5. rclone sync → deb 文件同步到 Cloudflare R2
   6. scp → 索引文件部署到 VPS (apt.cccczl.top)
+  7. generate-llms-txt.sh → 生成知识库 llms.txt + index.html
+  8. scp → 知识库部署到 VPS
 ```
 
-用户通过 `apt.cccczl.top` 获取索引，deb 包从 R2 (`r2.cccczl.top`) 直接下载。
+用户通过 `apt.cccczl.top` 获取索引，deb 包经 nginx 301 重定向从 R2 (`r2.cccczl.top`) 下载。
 
 ## 如何加入一个 deb 包
 
@@ -57,15 +59,15 @@ git push origin main
 
 推送后 GitHub Actions 自动执行：
 
-1. `dpkg-scanpackages` 扫描 `pool/` 生成 `Packages`
-2. 将 `Filename` 字段替换为 R2 CDN 地址
-3. 压缩生成 `Packages.gz` 和 `Packages.xz`
-4. `apt-ftparchive` 生成 `Release`（含 Origin/Label/Suite 元数据）
-5. GPG 签名生成 `InRelease`
-6. `rclone` 同步 deb 文件到 Cloudflare R2
-7. `scp` 将索引文件部署到 VPS
+1. `dpkg-scanpackages --multiversion` 扫描 `pool/` 生成 `Packages`（Filename 保持相对路径，由 VPS nginx 重定向到 R2）
+2. 压缩生成 `Packages.gz` 和 `Packages.xz`
+3. `apt-ftparchive` 生成 `Release`（含 Origin/Label/Suite 元数据）
+4. GPG 签名生成 `InRelease`
+5. `rclone` 同步 deb 文件到 Cloudflare R2
+6. `scp` 将索引文件部署到 VPS
+7. `generate-llms-txt.sh` 生成知识库 `llms.txt` + `index.html` 并部署到 VPS
 
-完成后用户在客户端执行 `apt update` 即可安装新包。
+完成后用户在客户端执行 `apt update` 即可安装新包，deb 包经 nginx 301 重定向从 R2 CDN 下载。
 
 ## 所需 GitHub Secrets
 
@@ -81,7 +83,7 @@ git push origin main
 
 ## 注意事项
 
-- deb 包直接放在 `pool/` 根目录，不需要按软件名/版本建子目录
+- deb 包可放在 `pool/` 根目录或子目录中（如 `pool/noatinwork/`），`dpkg-scanpackages` 会递归扫描
 - v2 不再使用 `metadata.json`，所有包信息由 deb 包自身元数据提供
 - v2 不再使用 DEP-11 / GNOME Software 集成
 - v2 不再使用 Gitee/GitCode 多平台镜像，仅 GitHub + R2
