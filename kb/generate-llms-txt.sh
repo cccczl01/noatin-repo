@@ -24,7 +24,7 @@ HEADER
 declare -A CATEGORIES=(
   ["debs"]="第三方 deb 包|直接下载 deb 文件并通过 apt install 安装|📦"
   ["binaries"]="二进制工具|下载预编译二进制文件，install 到 /usr/local/bin|⚡"
-  ["composes"]="Docker Compose 项目|docker compose up -d 一键启动|🐳"
+  ["sources"]="源码安装项目|git clone + 手动构建|🔧"
   ["skills"]="AI Skills/规则|AI IDE/CLI 工具的 skills、rules、commands 配置|🧩"
   ["mcps"]="MCP Server|Model Context Protocol Server 安装配置|🔌"
 )
@@ -70,7 +70,7 @@ TEMPLATE="$SCRIPT_DIR/index.template.html"
 
 # 生成卡片 HTML
 CARDS_HTML=""
-for dir in debs binaries composes skills mcps; do
+for dir in debs binaries sources skills mcps; do
   IFS='|' read -r title desc icon <<< "${CATEGORIES[$dir]}"
   items="${CATEGORY_ITEMS[$dir]}"
   CARDS_HTML+=$(cat <<CARD
